@@ -1,0 +1,28 @@
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\bin\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.exe
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\bin\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.deps.json
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\bin\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.runtimeconfig.json
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\bin\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.dll
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\bin\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.pdb
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.AssemblyInfoInputs.cache
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.AssemblyInfo.cs
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.csproj.CoreCompileInputs.cache
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.dll
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\refint\02_CristinaSanchez_GestorCatalogo.dll
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.pdb
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.genruntimeconfig.cache
+C:\Users\Kindsu\Desktop\Clase\Sistemas de gestión empresarial\Proyectos\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\ref\02_CristinaSanchez_GestorCatalogo.dll
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\bin\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.exe
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\bin\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.deps.json
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\bin\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.runtimeconfig.json
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\bin\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.dll
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\bin\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.pdb
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.AssemblyInfoInputs.cache
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.AssemblyInfo.cs
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.csproj.CoreCompileInputs.cache
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.dll
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\refint\02_CristinaSanchez_GestorCatalogo.dll
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.pdb
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\02_CristinaSanchez_GestorCatalogo.genruntimeconfig.cache
+C:\Users\Kindsu\Desktop\Clase\Desarrollo de interfaces\03_Catalogo\02_CristinaSanchez_GestorCatalogo\obj\Debug\net8.0\ref\02_CristinaSanchez_GestorCatalogo.dll

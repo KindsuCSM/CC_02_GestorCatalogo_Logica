@@ -10,7 +10,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
 {
     internal static partial class CtrlArtista
     {
-        List<Artista> artistas = new List<Artista>();
+        private static List<Artista> artistas = new List<Artista>();
         private static List<Artista> inicializarLista() 
         {
                 //Crear las instancias de las clases bandas y solistas
@@ -41,5 +41,22 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
 
                 return artistas; 
         }
+
+        public static void addArtista(Artista artista)
+        {
+            artistas.aw
+        }
+
+        public static void removeArtista(Artista artista)
+        {
+            
+        }
+
+        public static void ordenarLista()
+        {
+            
+        }
+        
+        public static void buscar
     }
 }

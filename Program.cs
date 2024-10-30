@@ -7,7 +7,6 @@ namespace _02_CristinaSanchez_GestorCatalogo
     {
         static void Main(string[] args)
         {
-            
             //Bandas
             //Coldplay
             //Bring me the horizon

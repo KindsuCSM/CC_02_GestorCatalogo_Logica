@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace _02_CristinaSanchez_GestorCatalogo.controlador
 {
-    internal static partial class CtrlCatalogo
+    internal static class CtrlCatalogo
     {
+        //Crear constantes
         //El formato que tiene nombre de archivo es para que se nos cree en la carpeta del propio archivo y no en net8.0
         private const string NOMBRE_ARCHIVO = @"./../../../catalogo.dat"; 
         private const char MARCA_SOLITARIO = 'S';
         private const char MARCA_BANDA = 'B';
         private const int PESO_BYTES_BANDA = 161;
         private const int PESO_BYTES_SOLITARIO = 98;
-
-
+        
         private static string CompletarCadena(this string str, int size)
         {
             return str.PadRight(size, ' '); //PadRight rellena los huecos a su derecha

@@ -5,21 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace _02_CristinaSanchez_GestorCatalogo.modelo
-{    enum GeneroMusical
-    {
-        Pop = 0,
-        Rock = 1,
-        PopRock = 2,
-        HipHop = 3,
-        Electrónica = 4,
-        Reggaetón = 5,
-        Indie = 6,
-        Jazz = 7,
-        Clásica = 8,
-        Rap = 9,
-        Metal = 10, 
-        Urbano = 11
-    }
+{    
     internal class Artista
     {
         public const int MAX_STRING_BG = 30;
@@ -61,7 +47,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.modelo
         {
             string activo =  (EstaActivo) ? "Actualmente se encuentra activo" : "Actualmente no se encuentra activo";
             
-            return $"\n\tNombre artístico: {NombreGrupo}\n\tAño comienzo: {AnioInicios}\n\tNúmero de discos: {NumDiscos}\n\tGénero musical: {Genero.ToString()}\n\tDiscografía: {Discografia}\n\t{activo}\n\n";
+            return $"\n\tNombre artístico: {NombreGrupo}\n\tAño comienzo: {AnioInicios}\n\tNúmero de discos: {NumDiscos}\n\tGénero musical: {Genero.ToString()}\n\tDiscografía: {Discografia}\n\t{activo}";
         }
 
     }

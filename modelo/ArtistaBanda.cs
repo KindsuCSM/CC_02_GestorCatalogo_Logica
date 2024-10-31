@@ -37,7 +37,6 @@ namespace _02_CristinaSanchez_GestorCatalogo.modelo
             {
                 cadenaCompleta += $"\n\t\t - {miembro}";
             }
-
             return $"Banda: \n\tIntegrantes de la banda: {cadenaCompleta}\n\tNumero de integrantes: {NumIntegrantes}" + base.ToString();
         }
     }

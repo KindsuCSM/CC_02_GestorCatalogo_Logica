@@ -8,11 +8,16 @@ using System.Threading.Tasks;
 
 namespace _02_CristinaSanchez_GestorCatalogo.controlador
 {
-    internal static partial class CtrlArtista
+    internal static class CtrlArtista
     {
-        private static List<Artista> artistas = new List<Artista>();
-        private static List<Artista> inicializarLista() 
+        public static List<Artista> artistas = new List<Artista>();
+        static CtrlArtista()
         {
+            artistas = inicializarLista();
+        }
+        private static List<Artista> inicializarLista()
+        {
+            GeneroMusical genero;
                 //Crear las instancias de las clases bandas y solistas
                 // Bandas
                 ArtistaBanda coldplay = new ArtistaBanda("Chris Martin,Jonny Buckland,Guy Berryman,Will Champion,Phil Harvey", 5, "Coldplay", 1997, "Warner Music", 9, GeneroMusical.PopRock, true);
@@ -41,10 +46,14 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
 
                 return artistas; 
         }
-
-        public static void addArtista()
+        public static void addArtistaSolista(ArtistaSolista artista)
         {
-            artistas
+            artistas.Append(artista);
+        }
+        
+        public static void addArtistaBanda(ArtistaBanda artista)
+        {
+            artistas.Append(artista);
         }
 
         public static void removeArtista(Artista artista)
@@ -54,7 +63,10 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
 
         public static void orderLista()
         {
-            
+            foreach (Artista artista in artistas)
+            {
+                Console.WriteLine(artista.ToString());
+            }
         }
 
         public static void searchArtista()

@@ -93,9 +93,9 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             string active = Console.ReadLine();
             estaActivo = (active == "Si")? true : false;
             Console.WriteLine("Genero musical:");
-            foreach (Artista.GeneroMusical genero in Enum.GetValues(typeof(Artista.GeneroMusical)))
+            foreach (Artista.GeneroMusical generoArtista in Enum.GetValues(typeof(Artista.GeneroMusical)))
             {
-                Console.WriteLine($"{contador} - {genero}");
+                Console.WriteLine($"{contador} - {generoArtista}");
                 contador++;
             }
             int genero = Int32.Parse(Console.ReadLine());

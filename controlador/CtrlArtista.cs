@@ -42,9 +42,9 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                 return artistas; 
         }
 
-        public static void addArtista(Artista artista)
+        public static void addArtista()
         {
-            artistas.aw
+            artistas
         }
 
         public static void removeArtista(Artista artista)
@@ -52,11 +52,14 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
             
         }
 
-        public static void ordenarLista()
+        public static void orderLista()
         {
             
         }
-        
-        public static void buscar
+
+        public static void searchArtista()
+        {
+            
+        }
     }
 }

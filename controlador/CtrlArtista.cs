@@ -56,7 +56,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
             artistas.Append(artista);
         }
 
-        public static void removeArtista(Artista artista)
+        public static void removeArtista(Dictionary<string, string> diccionario)
         {
             
         }
@@ -69,7 +69,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
             }
         }
 
-        public static void searchArtista()
+        public static void searchArtista(Dictionary<string, string> diccionario)
         {
             
         }

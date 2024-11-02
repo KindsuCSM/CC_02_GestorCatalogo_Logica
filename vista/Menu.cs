@@ -40,16 +40,16 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                     switch (opcion)
                     {
                         case 1:
-                            darAlta();
+                            DarAlta();
                             break;
                         case 2:
-                            buscarElemento();
+                            PedirAtributosBusqueda();
                             break;
                         case 3:
-                            eliminarElemnto();
+                            EliminarElemento();
                             break;
                         case 4:
-                            listarArtistas();
+                            ListarArtistas();
                             break;
                         default: 
                             Console.WriteLine("El numero que ha introducido no es válido.");
@@ -59,13 +59,12 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             } while (continuar);
         }
 
-        private static void darAlta()
+        private static void DarAlta()
         {
             Console.WriteLine("1 - Solista");
             Console.WriteLine("2 - Banda");
             Console.Write("Ingrese la opción que desea:");
             int opcion = Int32.Parse(Console.ReadLine());
-
             switch (opcion)
             {
                 case 1:
@@ -83,7 +82,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             }
         }
 
-        //Funciona
+        // Funciones para introducir por consola los datos de los artistas para la funcion darAlta
         private static ArtistaSolista introducirDatosSolista()
         {
             int contador = 0;
@@ -119,10 +118,8 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             }
             Console.Write("Introduzca el genero (0-11)");
             int genero = Int32.Parse(Console.ReadLine()) - 1;
-            
             //Hacer un cast del número introducido al valor del enum
             GeneroMusical generoMusical = (GeneroMusical)genero;
-            
             //Retornar un nuevo ArtistaSolista
             return new ArtistaSolista(nombre, instrumento, nombreArtistico, anioInicio, disgrafico, numDiscos, generoMusical ,estaActivo);
         }
@@ -131,57 +128,129 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             int contador = 0;
             bool estaActivo;
             //Pedir los datos necesarios para crear una nueva instancia de ArtistaBanda
-            Console.WriteLine("Introduzca los nombres de los integrantes: ");
+            Console.Write("Introduzca los nombres de los integrantes: ");
             String lstmiembros = Console.ReadLine();
-            Console.WriteLine("Numero de integrantes:");
+            Console.Write("Numero de integrantes: ");
             int numIntegrantes = Int32.Parse(Console.ReadLine());
-            Console.WriteLine("Nombre artistico:");
+            Console.Write("Nombre artistico: ");
             String nombreArtistico = Console.ReadLine();
-            Console.WriteLine("Año de incicios:");
+            Console.Write("Año de incicios: ");
             int anioInicio = Int32.Parse(Console.ReadLine());
-            Console.WriteLine("Discografía:");
+            Console.Write("Discografía: ");
             String disgrafico = Console.ReadLine();
-            Console.WriteLine("Numero de discos:");
+            Console.Write("Numero de discos: ");
             int numDiscos = Int32.Parse(Console.ReadLine());
-            Console.WriteLine("¿Se encuentra activo?(Si-No)");
+            Console.Write("¿Se encuentra activo?(Si-No): ");
             string active = Console.ReadLine();
-            
             //Convertir el string si o no a booleano
             if (active.ToLower().Equals("Si")) { estaActivo = true; }
             else if (active.ToLower().Equals("No")) { estaActivo = false; }
             else { Console.WriteLine("El valor introducido no es válido. "); estaActivo = true; }
             Console.WriteLine("Genero musical:");
-            
             // Mostrar los valores del enum GeneroMusical
             foreach (GeneroMusical generoArtista in Enum.GetValues(typeof(GeneroMusical)))
             {
                 contador++;
                 Console.WriteLine($"{contador} - {generoArtista}");
             }
-            Console.Write("Introduzca el genero (0-11)");
+            Console.Write("Introduzca el genero (0-11): ");
             int genero = Int32.Parse(Console.ReadLine()) - 1;
-            
             //Hacer un cast del número introducido al valor del enum
             GeneroMusical generoMusical = (GeneroMusical) genero;
-            
             //Retornar un nuevo ArtistaBanda
             return new ArtistaBanda(lstmiembros, numIntegrantes, nombreArtistico, anioInicio, disgrafico, numDiscos, generoMusical ,estaActivo);
         }
-        
-        private static void buscarElemento()
+        private static Dictionary<string, string> PedirAtributosBusqueda()
         {
+            var dict = new Dictionary<string, string>();
+            string opcion;
+            string valor;
+            int contadorGeneros = 0;
+            int contadorAtributos = 0;
+            /*Para no crear tantas estructuras de condicionales, me creo un bucle que recorra una lista con los nombres de atributos
+            //listos para ser mostrados en la pantalla y creo otra, con el mismo orden que la anterior, con los nombres
+            //de los atributos que voy a introducir en el propio diccionario que luego pasaré a la función de la clase CtrlArtista*/
+            string[] atributosArtistaMostrar = [ "nombre del artista", "año de inicio", "discografia", "genero", "activo(Si-No)" ];
+            string[] atributosArtistaNombres = [ "nombreGrupo", "anioInicios", "discografia", "genero", "estaActivo" ];
             
-            
-            
+            //Preguntarle por los atributos del padre primero, 
+            foreach (string atributo in atributosArtistaMostrar)
+            {
+                Console.Write($"¿Desea buscar por {atributo}?(Si-No): ");
+                opcion = Console.ReadLine().ToLower();
+                if (opcion.Equals("si"))
+                {
+                    if (atributo.Equals("genero"))
+                    {
+                        Console.Write($"Introduzca {atributo}: ");
+                        foreach (GeneroMusical generoArtista in Enum.GetValues(typeof(GeneroMusical)))
+                        {
+                            contadorGeneros++;
+                            Console.WriteLine($"{contadorGeneros} - {generoArtista}");
+                        }
+                        Console.Write($"Introduzca el {atributo}: ");
+                        valor = Console.ReadLine();
+                        dict.Add("genero", valor);
+                    }
+                    else
+                    {
+                        Console.Write($"Introduzca {atributo}: ");
+                        valor = Console.ReadLine();
+                        dict.Add(atributosArtistaNombres[contadorAtributos], valor);
+                    }
+                }
+                contadorAtributos++;
+            }
+            //Buscar por los atributos del artista solista
+            Console.Write($"¿Desea buscar por el nombre real del artista?(Si-No): ");
+            opcion = Console.ReadLine().ToLower();
+            if (opcion.Equals("si"))
+            {
+                Console.Write("Introduzca el nombre real: ");
+                valor = Console.ReadLine();
+                dict.Add("nombreReal", valor);
+            }
+            Console.Write("Desea buscar por el instrumento del artista?(Si-No):");
+            opcion = Console.ReadLine().ToLower();
+            if (opcion.Equals("si"))
+            {
+                Console.Write("Introduzca el nombre real: ");
+                valor = Console.ReadLine();
+                dict.Add("instrumentoPrincipal", valor);
+            }
+            /*En caso de que el diccionario no tenga ninguno de los atributos del artista solitario, entrará a preguntar 
+            si quiere buscar por los atributos del artista banda*/
+            if (!dict.ContainsKey("nombreReal") && !dict.ContainsKey("instrumentoPrincipal"))
+            {
+                Console.Write($"¿Desea buscar por un miembro del grupo?(Si-No): ");
+                opcion = Console.ReadLine().ToLower();
+                if (opcion.Equals("si"))
+                {
+                    Console.Write("Introduzca el nombre del miembro: ");
+                    valor = Console.ReadLine();
+                    dict.Add("lstMiembros", valor);
+                }
+                Console.Write("Desea buscar por el numero de miembros?(Si-No):");
+                opcion = Console.ReadLine().ToLower();
+                if (opcion.Equals("si"))
+                {
+                    Console.Write("Introduzca el numero de miembros: ");
+                    valor = Console.ReadLine();
+                    dict.Add("numMiembros", valor);
+                }
+            }
+
+            return dict;
         }
-        
-        //No funciona
-        private static void eliminarElemnto()
+        private static void BuscarElemento()
         {
-            
+            CtrlArtista.searchArtista(PedirAtributosBusqueda());
         }
-        //Funciona a medias xd no actualiza lista
-        private static void listarArtistas()
+        private static void EliminarElemento()
+        {
+            CtrlArtista.removeArtista(PedirAtributosBusqueda());
+        }
+        private static void ListarArtistas()
         {
             CtrlArtista.orderLista();
         }

@@ -169,7 +169,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             //listos para ser mostrados en la pantalla y creo otra con el mismo orden que la anterior, con los nombres
             //de los atributos que voy a introducir en el propio diccionario que luego pasaré a la función de la clase CtrlArtista*/
             string[] atributosArtistaMostrar = [ "nombre del artista", "año de inicio", "discografia", "genero", "activo(Si-No)", "nombre real", "instrumento" ];
-            string[] atributosArtistaNombres = [ "nombreGrupo", "anioInicios", "discografia", "genero", "estaActivo", "nombreReal", "instrumento" ];
+            string[] atributosArtistaNombres = [ "NombreGrupo", "AnioInicios", "Discografia", "Genero", "EstaActivo", "NombreReal", "InstrumentoPrincipal" ];
             
             //Preguntarle por los atributos del padre primero, 
             foreach (string atributo in atributosArtistaMostrar)
@@ -178,7 +178,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 opcion = Console.ReadLine().ToLower();
                 if (opcion.Equals("si"))
                 {
-                    if (atributo.Equals("genero"))
+                    if (atributo.Equals("Genero"))
                     {
                         Console.Write($"Introduzca {atributo}: ");
                         foreach (GeneroMusical generoArtista in Enum.GetValues(typeof(GeneroMusical)))
@@ -188,7 +188,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                         }
                         Console.Write($"Introduzca el {atributo}: ");
                         valor = Console.ReadLine();
-                        dict.Add("genero", valor);
+                        dict.Add("Genero", valor);
                     }
                     else
                     {
@@ -202,7 +202,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             
             /*En caso de que el diccionario no tenga ninguno de los atributos del artista solitario, entrará a preguntar 
             si quiere buscar por los atributos del artista banda*/
-            if (!dict.ContainsKey("nombreReal") && !dict.ContainsKey("instrumentoPrincipal"))
+            if (!dict.ContainsKey("NombreReal") && !dict.ContainsKey("InstrumentoPrincipal"))
             {
                 Console.Write($"¿Desea buscar por un miembro del grupo?(Si-No): ");
                 opcion = Console.ReadLine().ToLower();
@@ -210,7 +210,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 {
                     Console.Write("Introduzca el nombre del miembro: ");
                     valor = Console.ReadLine();
-                    dict.Add("lstMiembros", valor);
+                    dict.Add("LstMiembros", valor);
                 }
                 Console.Write("Desea buscar por el numero de miembros?(Si-No):");
                 opcion = Console.ReadLine().ToLower();
@@ -218,7 +218,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 {
                     Console.Write("Introduzca el numero de miembros: ");
                     valor = Console.ReadLine();
-                    dict.Add("numMiembros", valor);
+                    dict.Add("NumMiembros", valor);
                 }
             }
             return dict;

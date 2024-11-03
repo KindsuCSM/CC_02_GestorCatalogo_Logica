@@ -71,7 +71,68 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
 
         public static void searchArtista(Dictionary<string, string> diccionario)
         {
-            
+            List<Artista> lstAuxiliar = new List<Artista>();
+            bool cumpleRequisitos = true;
+            bool valorBool;
+
+            foreach (KeyValuePair<string, string> diccionarioAux in diccionario)
+            {
+                foreach (Artista artist in artistas)
+                {
+                    if (diccionarioAux.Key.Equals("nombreGrupo"))
+                    {
+                        cumpleRequisitos = artist.NombreGrupo.Equals(diccionarioAux.Value);
+                    }
+                    if (diccionarioAux.Key.Equals("anioInicios") && cumpleRequisitos)
+                    {
+                        cumpleRequisitos = artist.AnioInicios.ToString().Equals(diccionarioAux.Value) && cumpleRequisitos;
+                    }
+                    if (diccionarioAux.Key.Equals("discografia") && cumpleRequisitos)
+                    {
+                        cumpleRequisitos = artist.Discografia.Equals(diccionarioAux.Value) && cumpleRequisitos;
+                    }
+                    if (diccionarioAux.Key.Equals("genero") && cumpleRequisitos) // 
+                    {
+                        cumpleRequisitos = artist.Genero.ToString().Equals(diccionarioAux.Value) && cumpleRequisitos;
+                    }
+                    if (diccionarioAux.Key.Equals("estaActivo") && cumpleRequisitos) // 
+                    {
+                        valorBool = diccionarioAux.Value.ToLower().Equals("si");
+                        cumpleRequisitos = (artist.EstaActivo == valorBool && cumpleRequisitos);
+                    }
+
+                    if (artist is ArtistaSolista && cumpleRequisitos)
+                    {
+                        ArtistaSolista art = (ArtistaSolista) artist;
+                        if (diccionarioAux.Key.Equals("nombreReal") && cumpleRequisitos)
+                        {
+                            cumpleRequisitos = art.NombreReal.Equals(diccionarioAux.Value);
+                        }
+                        if(diccionarioAux.Key.Equals("instrumento") && cumpleRequisitos)
+                        {
+                            cumpleRequisitos = art.InstrumentoPrincipal.Equals(diccionarioAux.Value);
+                        }
+                        lstAuxiliar.Add(artist);
+                    }else if (artist is ArtistaBanda)
+                    {
+                        ArtistaBanda art = (ArtistaBanda) artist;
+                        if (diccionarioAux.Key.Equals("lstMiembros") && cumpleRequisitos)
+                        {
+                            cumpleRequisitos = art.LstMiembros.Contains(diccionarioAux.Value);
+                        }
+                        if(diccionarioAux.Key.Equals("numIntegrantes") && cumpleRequisitos)
+                        {
+                            cumpleRequisitos = art.NumIntegrantes.ToString().Equals(diccionarioAux.Value);
+                        }
+                        lstAuxiliar.Add(art);
+                    }
+
+                    foreach (Artista art in artistas)
+                    {
+                        Console.WriteLine(artist.ToString());
+                    }
+                }
+            }
         }
     }
 }

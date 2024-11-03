@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using _02_CristinaSanchez_GestorCatalogo.modelo;
 using _02_CristinaSanchez_GestorCatalogo.controlador;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace _02_CristinaSanchez_GestorCatalogo.vista
 {
@@ -14,7 +15,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
         {
             MenuPrincipal();
         }
-        public static void MenuPrincipal()
+        private static void MenuPrincipal()
         {
             bool continuar = true;
             
@@ -28,8 +29,6 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 Console.WriteLine("0 - Salir del programa. ");
                 Console.Write("Ingrese una opción: ");
                 int opcion = Int32.Parse(Console.ReadLine());
-                
-
                 if (opcion == 0)
                 {
                     continuar = false;
@@ -43,7 +42,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                             DarAlta();
                             break;
                         case 2:
-                            PedirAtributosBusqueda();
+                            BuscarElemento();
                             break;
                         case 3:
                             EliminarElemento();
@@ -58,7 +57,6 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 }
             } while (continuar);
         }
-
         private static void DarAlta()
         {
             Console.WriteLine("1 - Solista");
@@ -68,7 +66,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             switch (opcion)
             {
                 case 1:
-                    ArtistaSolista solista = introducirDatosSolista();
+                    ArtistaSolista solista = IntroducirDatosSolista();
                     CtrlArtista.addArtistaSolista(solista);
                     
                     break;
@@ -81,9 +79,8 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                     break;
             }
         }
-
         // Funciones para introducir por consola los datos de los artistas para la funcion darAlta
-        private static ArtistaSolista introducirDatosSolista()
+        private static ArtistaSolista IntroducirDatosSolista()
         {
             int contador = 0;
             bool estaActivo;
@@ -160,18 +157,19 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             //Retornar un nuevo ArtistaBanda
             return new ArtistaBanda(lstmiembros, numIntegrantes, nombreArtistico, anioInicio, disgrafico, numDiscos, generoMusical ,estaActivo);
         }
-        private static Dictionary<string, string> PedirAtributosBusqueda()
+        private static Dictionary<string, string> PedirAtributosBusqueda() 
         {
             var dict = new Dictionary<string, string>();
+            
             string opcion;
             string valor;
             int contadorGeneros = 0;
             int contadorAtributos = 0;
             /*Para no crear tantas estructuras de condicionales, me creo un bucle que recorra una lista con los nombres de atributos
-            //listos para ser mostrados en la pantalla y creo otra, con el mismo orden que la anterior, con los nombres
+            //listos para ser mostrados en la pantalla y creo otra con el mismo orden que la anterior, con los nombres
             //de los atributos que voy a introducir en el propio diccionario que luego pasaré a la función de la clase CtrlArtista*/
-            string[] atributosArtistaMostrar = [ "nombre del artista", "año de inicio", "discografia", "genero", "activo(Si-No)" ];
-            string[] atributosArtistaNombres = [ "nombreGrupo", "anioInicios", "discografia", "genero", "estaActivo" ];
+            string[] atributosArtistaMostrar = [ "nombre del artista", "año de inicio", "discografia", "genero", "activo(Si-No)", "nombre real", "instrumento" ];
+            string[] atributosArtistaNombres = [ "nombreGrupo", "anioInicios", "discografia", "genero", "estaActivo", "nombreReal", "instrumento" ];
             
             //Preguntarle por los atributos del padre primero, 
             foreach (string atributo in atributosArtistaMostrar)
@@ -201,23 +199,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 }
                 contadorAtributos++;
             }
-            //Buscar por los atributos del artista solista
-            Console.Write($"¿Desea buscar por el nombre real del artista?(Si-No): ");
-            opcion = Console.ReadLine().ToLower();
-            if (opcion.Equals("si"))
-            {
-                Console.Write("Introduzca el nombre real: ");
-                valor = Console.ReadLine();
-                dict.Add("nombreReal", valor);
-            }
-            Console.Write("Desea buscar por el instrumento del artista?(Si-No):");
-            opcion = Console.ReadLine().ToLower();
-            if (opcion.Equals("si"))
-            {
-                Console.Write("Introduzca el nombre real: ");
-                valor = Console.ReadLine();
-                dict.Add("instrumentoPrincipal", valor);
-            }
+            
             /*En caso de que el diccionario no tenga ninguno de los atributos del artista solitario, entrará a preguntar 
             si quiere buscar por los atributos del artista banda*/
             if (!dict.ContainsKey("nombreReal") && !dict.ContainsKey("instrumentoPrincipal"))
@@ -239,7 +221,6 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                     dict.Add("numMiembros", valor);
                 }
             }
-
             return dict;
         }
         private static void BuscarElemento()

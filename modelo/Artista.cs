@@ -27,7 +27,6 @@ namespace _02_CristinaSanchez_GestorCatalogo.modelo
             Genero = genero;
             EstaActivo = estaActivo;
         }
-
         public string NombreGrupo
         {
             get { return nombreGrupo; }

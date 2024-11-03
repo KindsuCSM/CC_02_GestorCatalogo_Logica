@@ -51,22 +51,42 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
         {
             artistas.Add(artista);
         }
-        
         public static void addArtistaBanda(ArtistaBanda artista)
         {
             artistas.Add(artista);
         }
-
-        public static void removeArtista(Dictionary<string, string> diccionario)
+        public static void orderLista(string atributo)
         {
-            
+            List<Artista> lista = new List<Artista>();
+            switch (atributo)
+            {
+                case "nombre grupo":
+                    artistas.OrderBy(n => n.NombreGrupo).ToList();
+                    break;
+                case "año inicio":
+                    artistas.OrderBy(n => n.AnioInicios).ToList();
+                    break;
+                case "discografia":
+                    artistas.OrderBy(n => n.Discografia).ToList();
+                    break;
+                case "numero de discos":
+                    artistas.OrderBy(n => n.NumDiscos).ToList();
+                    break;
+                case "genero":
+                    artistas.OrderBy(n => n.Genero).ToList();
+                    break;
+                case "activo":
+                    artistas.OrderBy(n => n.EstaActivo).ToList();
+                    break;
+            }
+            mostrarLista(artistas);
         }
 
-        public static void orderLista()
+        public static void mostrarLista(List<Artista> lista)
         {
-            foreach (Artista artista in artistas)
+            foreach (Artista artista in lista)
             {
-                Console.WriteLine(artista.ToString());
+                Console.WriteLine(artista);
             }
         }
         public static void searchArtista(Dictionary<string, string> diccionario)
@@ -98,12 +118,30 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                     artistasFiltrados.Add(artista);
                 }
             }
-            
-            foreach (Artista ar in artistasFiltrados)
+            if (artistasFiltrados.Count == 1)
             {
-                Console.WriteLine(ar.ToString());
+                mostrarLista(artistasFiltrados);
+                foreach (Artista artista in artistasFiltrados)
+                {
+                    removeArtista(artista);
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Se han encontrado {artistasFiltrados.Count} artistas en total.");
+                mostrarLista(artistasFiltrados);
             }
 
+        }
+        public static void removeArtista(Artista artista)
+        {
+            Console.Write($"¿Desea borrar el artista {artista.NombreGrupo}?(si - no): ");
+            string opc = Console.ReadLine().ToLower();
+            if (opc.Equals("si"))
+            {
+                artistas.Remove(artista);
+                Console.WriteLine("El artista se ha eliminado con éxito.");
+            }
         }
     }
 }

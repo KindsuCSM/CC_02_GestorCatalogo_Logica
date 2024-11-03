@@ -9,6 +9,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.modelo
 {
     internal class ArtistaSolista : Artista
     {
+        
         public const int MAX_STRING_BG = 30;
         public const int MAX_STRING_SM = 10;
 

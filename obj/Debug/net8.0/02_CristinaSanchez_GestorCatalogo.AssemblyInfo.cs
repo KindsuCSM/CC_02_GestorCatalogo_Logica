@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("02_CristinaSanchez_GestorCatalogo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e6bc8e46c9e9962c69a27ebe6b19e85e2a51ae1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ea53d43094f501ba8f57ee0c2902c89c6ab95ab")]
 [assembly: System.Reflection.AssemblyProductAttribute("02_CristinaSanchez_GestorCatalogo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("02_CristinaSanchez_GestorCatalogo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                             BuscarElemento();
                             break;
                         case 3:
-                            EliminarElemento();
+                            BuscarElemento();
                             break;
                         case 4:
                             ListarArtistas();
@@ -79,7 +80,6 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                     break;
             }
         }
-        // Funciones para introducir por consola los datos de los artistas para la funcion darAlta
         private static ArtistaSolista IntroducirDatosSolista()
         {
             int contador = 0;
@@ -168,8 +168,8 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             /*Para no crear tantas estructuras de condicionales, me creo un bucle que recorra una lista con los nombres de atributos
             //listos para ser mostrados en la pantalla y creo otra con el mismo orden que la anterior, con los nombres
             //de los atributos que voy a introducir en el propio diccionario que luego pasaré a la función de la clase CtrlArtista*/
-            string[] atributosArtistaMostrar = [ "nombre del artista", "año de inicio", "discografia", "genero", "activo(Si-No)", "nombre real", "instrumento" ];
-            string[] atributosArtistaNombres = [ "NombreGrupo", "AnioInicios", "Discografia", "Genero", "EstaActivo", "NombreReal", "InstrumentoPrincipal" ];
+            string[] atributosArtistaMostrar = { "nombre del artista", "año de inicio", "discografia", "genero", "activo", "nombre real", "instrumento" };
+            string[] atributosArtistaNombres = { "NombreGrupo", "AnioInicios", "Discografia", "Genero", "EstaActivo", "NombreReal", "InstrumentoPrincipal" };
             
             //Preguntarle por los atributos del padre primero, 
             foreach (string atributo in atributosArtistaMostrar)
@@ -178,28 +178,35 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 opcion = Console.ReadLine().ToLower();
                 if (opcion.Equals("si"))
                 {
-                    if (atributo.Equals("Genero"))
+                    if (atributo.Equals("genero"))
                     {
-                        Console.Write($"Introduzca {atributo}: ");
+                        Console.WriteLine("Generos disponibles: ");
                         foreach (GeneroMusical generoArtista in Enum.GetValues(typeof(GeneroMusical)))
                         {
                             contadorGeneros++;
                             Console.WriteLine($"{contadorGeneros} - {generoArtista}");
                         }
                         Console.Write($"Introduzca el {atributo}: ");
-                        valor = Console.ReadLine();
-                        dict.Add("Genero", valor);
+                        valor = Console.ReadLine().ToLower();
+                        dict.Add(atributosArtistaNombres[contadorAtributos], valor);
+                    }
+                    else if (atributo.Equals("activo"))
+                    {
+                        Console.Write($"Introduzca {atributo}(Si-No): ");
+                        string active = Console.ReadLine().ToLower();
+
+                        valor = (active.Equals("si")) ? "true" : "false";
+                        dict.Add(atributosArtistaNombres[contadorAtributos], valor);
                     }
                     else
                     {
                         Console.Write($"Introduzca {atributo}: ");
-                        valor = Console.ReadLine();
+                        valor = Console.ReadLine().ToLower();
                         dict.Add(atributosArtistaNombres[contadorAtributos], valor);
                     }
                 }
                 contadorAtributos++;
             }
-            
             /*En caso de que el diccionario no tenga ninguno de los atributos del artista solitario, entrará a preguntar 
             si quiere buscar por los atributos del artista banda*/
             if (!dict.ContainsKey("NombreReal") && !dict.ContainsKey("InstrumentoPrincipal"))
@@ -221,19 +228,45 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                     dict.Add("NumMiembros", valor);
                 }
             }
+
+            foreach (KeyValuePair<string, string> item in dict)
+            {
+                Console.WriteLine($"{item.Key} - {item.Value}");
+            }
             return dict;
         }
         private static void BuscarElemento()
         {
             CtrlArtista.searchArtista(PedirAtributosBusqueda());
         }
-        private static void EliminarElemento()
-        {
-            CtrlArtista.removeArtista(PedirAtributosBusqueda());
-        }
         private static void ListarArtistas()
         {
-            CtrlArtista.orderLista();
+            String[] elementos = { "nombre grupo", "año inicio", "discografia", "numero de discos", "genero", "activo" };
+            int contador = 1;
+            string opc;
+            bool continuar = true;
+            do
+            {
+                Console.WriteLine("Atributos disponibles: ");
+                foreach (string elemento in elementos)
+                {
+                    Console.WriteLine($"{contador} - {elemento}");
+                    contador++;
+                }
+                Console.WriteLine("¿Por que atributo desea ordenar la lista? Introduzca el nombre: ");
+                opc = Console.ReadLine().ToLower();
+                if (elementos.Contains(opc))
+                {
+                    CtrlArtista.orderLista(opc.ToLower());
+                    continuar = false;
+                }
+                else
+                {
+                    contador = 1;
+                    Console.WriteLine("El atributo que ha introducido no se encuentra en la lista. ");
+                }
+            } while (continuar);
         }
     }
 }
+

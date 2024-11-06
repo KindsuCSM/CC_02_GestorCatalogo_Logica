@@ -3,10 +3,18 @@ using System.Reflection;
 
 namespace _02_CristinaSanchez_GestorCatalogo.controlador
 {
-    internal static class CtrlArtista
+    internal class CtrlArtista
     {
-        public static List<Artista> artistas = new List<Artista>();
-        
+        private static List<Artista> artistas;
+        public CtrlArtista()
+        {
+            artistas = CtrlCatalogo.leerArchivo();
+        }
+
+        public static List<Artista> getListaArtistas()
+        {
+            return artistas;
+        }
         public static void addArtistaSolista(ArtistaSolista artista)
         {
             artistas.Add(artista);
@@ -41,7 +49,6 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
             }
             mostrarLista(lstOrdenada);
         }
-
         public static void mostrarLista(List<Artista> lista)
         {
             foreach (Artista artista in lista)

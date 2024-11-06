@@ -138,9 +138,8 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
             if (File.Exists(NOMBRE_ARCHIVO))
             {
                 DateTime dateTime = DateTime.Now;
-                File.Move(NOMBRE_ARCHIVO, $"{NOMBRE_ARCHIVO}_{dateTime.Day}-{dateTime.Month}-{dateTime.Year}.dat");
+                File.Move(NOMBRE_ARCHIVO, $"{NOMBRE_ARCHIVO}_{dateTime.Day}-{dateTime.Month}-{dateTime.Year}_{dateTime.Hour}-{dateTime.Minute}-{dateTime.Second}.dat");
             }
-
             try
             {
                 using (var fileStr = new FileStream(NOMBRE_ARCHIVO, FileMode.Create))

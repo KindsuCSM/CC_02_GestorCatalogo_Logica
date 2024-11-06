@@ -8,14 +8,7 @@ namespace _02_CristinaSanchez_GestorCatalogo
     {
         static void Main(string[] args)
         {
-            
-            List<Artista> lstArtista = new List<Artista>();
-            lstArtista = CtrlCatalogo.leerArchivo();
-            
-            CtrlArtista.mostrarLista(lstArtista);
-            
-            Menu mn = new Menu(lstArtista);
-
+            Menu mn = new Menu();
         }
     }
 }

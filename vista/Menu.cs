@@ -5,10 +5,9 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
 {
     internal class Menu
     {
-        private static List<Artista> lstArtistas;
-        public Menu(List<Artista> artistas)
+        public Menu()
         {
-            setLista(artistas);
+            CtrlArtista ctrlArtista = new CtrlArtista(); //inicializar la lista
             MenuPrincipal();
         }
         private static void MenuPrincipal()
@@ -27,7 +26,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 if (opcion == 0)
                 {
                     continuar = false;
-                    CtrlCatalogo.escribirArchivo(lstArtistas);
+                    CtrlCatalogo.escribirArchivo(CtrlArtista.getListaArtistas());
                     Console.WriteLine("El programa ha finalizado con éxito. ");
                 }
                 else
@@ -53,12 +52,6 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 }
             } while (continuar);
         }
-
-        private static void setLista(List<Artista> artistas)
-        {
-            lstArtistas = artistas;
-        }
-        
         private static void DarAlta()
         {
             Console.WriteLine("1 - Solista");

@@ -1,10 +1,4 @@
 ﻿using _02_CristinaSanchez_GestorCatalogo.modelo;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _02_CristinaSanchez_GestorCatalogo.controlador
 {
@@ -12,7 +6,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
     {
         //Crear constantes
         //El formato que tiene nombre de archivo es para que se nos cree en la carpeta del propio archivo y no en net8.0
-        private const string NOMBRE_ARCHIVO = @"./../../../catalogo.dat"; 
+        private const string NOMBRE_ARCHIVO = "catalogo.dat"; 
         private const char MARCA_SOLITARIO = 'S';
         private const char MARCA_BANDA = 'B';
         private const int PESO_BYTES_BANDA = 161;

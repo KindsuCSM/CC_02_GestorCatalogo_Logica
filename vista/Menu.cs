@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _02_CristinaSanchez_GestorCatalogo.modelo;
+﻿using _02_CristinaSanchez_GestorCatalogo.modelo;
 using _02_CristinaSanchez_GestorCatalogo.controlador;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace _02_CristinaSanchez_GestorCatalogo.vista
 {
     internal class Menu
     {
-        public Menu()
+        private static List<Artista> lstArtistas;
+        public Menu(List<Artista> artistas)
         {
+            setLista(artistas);
             MenuPrincipal();
         }
         private static void MenuPrincipal()
         {
             bool continuar = true;
-            
             do
             {
                 Console.WriteLine("MENU DE OPCIONES: ");
@@ -33,6 +27,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 if (opcion == 0)
                 {
                     continuar = false;
+                    CtrlCatalogo.escribirArchivo(lstArtistas);
                     Console.WriteLine("El programa ha finalizado con éxito. ");
                 }
                 else
@@ -58,11 +53,17 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 }
             } while (continuar);
         }
+
+        private static void setLista(List<Artista> artistas)
+        {
+            lstArtistas = artistas;
+        }
+        
         private static void DarAlta()
         {
             Console.WriteLine("1 - Solista");
             Console.WriteLine("2 - Banda");
-            Console.Write("Ingrese la opción que desea:");
+            Console.Write("Ingrese la opción que desea: ");
             int opcion = Int32.Parse(Console.ReadLine());
             switch (opcion)
             {

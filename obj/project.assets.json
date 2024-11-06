@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Sobri\\.nuget\\packages\\": {}
+    "C:\\Users\\Kindsu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sobri\\Documents\\GitHub\\02_CristinaSanchez_GestorCatalogo\\02_CristinaSanchez_GestorCatalogo.csproj",
+      "projectUniqueName": "C:\\Users\\Kindsu\\RiderProjects\\02_CristinaSanchez_GestorCatalogo\\02_CristinaSanchez_GestorCatalogo.csproj",
       "projectName": "02_CristinaSanchez_GestorCatalogo",
-      "projectPath": "C:\\Users\\Sobri\\Documents\\GitHub\\02_CristinaSanchez_GestorCatalogo\\02_CristinaSanchez_GestorCatalogo.csproj",
-      "packagesPath": "C:\\Users\\Sobri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sobri\\Documents\\GitHub\\02_CristinaSanchez_GestorCatalogo\\obj\\",
+      "projectPath": "C:\\Users\\Kindsu\\RiderProjects\\02_CristinaSanchez_GestorCatalogo\\02_CristinaSanchez_GestorCatalogo.csproj",
+      "packagesPath": "C:\\Users\\Kindsu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Kindsu\\RiderProjects\\02_CristinaSanchez_GestorCatalogo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Sobri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Kindsu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

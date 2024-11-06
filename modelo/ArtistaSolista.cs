@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _02_CristinaSanchez_GestorCatalogo.modelo
+﻿namespace _02_CristinaSanchez_GestorCatalogo.modelo
 {
     internal class ArtistaSolista : Artista
     {
-        
         public const int MAX_STRING_BG = 30;
         public const int MAX_STRING_SM = 10;
 

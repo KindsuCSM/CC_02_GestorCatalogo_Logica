@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _02_CristinaSanchez_GestorCatalogo.modelo
+﻿namespace _02_CristinaSanchez_GestorCatalogo.modelo
 {    
     internal class Artista
     {

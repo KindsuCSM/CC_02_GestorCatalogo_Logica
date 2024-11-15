@@ -3,7 +3,7 @@
     internal class ArtistaSolista : Artista
     {
         public const int MAX_STRING_BG = 30;
-        public const int MAX_STRING_SM = 10;
+        public const int MAX_STRING_SM = 20;
 
 
         private string nombreReal;

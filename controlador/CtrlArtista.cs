@@ -56,7 +56,40 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                 Console.WriteLine(artista);
             }
         }
-        public static void searchArtista(Dictionary<string, string> diccionario)
+        public static void deleteArtistas(Dictionary<string, string> dicArtistas)
+        {
+            String opcion = "";
+            List<Artista> lstArtistasEncontrados = searchArtista(dicArtistas);
+            mostrarLista(lstArtistasEncontrados);
+
+            for (int i = 0; i < lstArtistasEncontrados.Count; i++)
+            {
+                Console.WriteLine($"Desea eliminar el artista {(i + 1)}");
+                opcion = Console.ReadLine().ToLower();
+                if (opcion == "si")
+                {
+                    artistas.Remove(lstArtistasEncontrados[i]);
+                }
+            }
+        } 
+        public static void buscarArtistaYEliminarUno(Dictionary<string, string> dicArtistas)
+        {
+            List<Artista> lstArtistasEncontrados = searchArtista(dicArtistas);
+
+            mostrarLista(lstArtistasEncontrados);
+
+            if (lstArtistasEncontrados.Count == 1)
+            {
+                Console.WriteLine("¿Desea eliminar el artista encontrado?(Si-No)");
+                string respuesta = Console.ReadLine().ToLower();
+                if (respuesta == "si")
+                {
+                    artistas.Remove(lstArtistasEncontrados[0]);
+                }
+            }
+            
+        }
+        public static List<Artista> searchArtista(Dictionary<string, string> diccionario)
         {
             List<Artista> artistasFiltrados = new List<Artista>();
             bool cumpleRequisitos;
@@ -85,20 +118,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                     artistasFiltrados.Add(artista);
                 }
             }
-            if (artistasFiltrados.Count == 1)
-            {
-                mostrarLista(artistasFiltrados);
-                foreach (Artista artista in artistasFiltrados)
-                {
-                    removeArtista(artista);
-                }
-            }
-            else
-            {
-                Console.WriteLine($"Se han encontrado {artistasFiltrados.Count} artistas en total.");
-                mostrarLista(artistasFiltrados);
-            }
-
+            return artistasFiltrados;
         }
         public static void removeArtista(Artista artista)
         {

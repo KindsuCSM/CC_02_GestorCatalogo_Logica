@@ -7,7 +7,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
     {
         public Menu()
         {
-            CtrlArtista ctrlArtista = new CtrlArtista(); //inicializar la lista
+            new CtrlArtista(); //inicializar la lista
             MenuPrincipal();
         }
         private static void MenuPrincipal()
@@ -16,10 +16,10 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             do
             {
                 Console.WriteLine("MENU DE OPCIONES: ");
-                Console.WriteLine("1 - Dar de alta un elemento. ");
-                Console.WriteLine("2 - Buscar un elemento. ");
-                Console.WriteLine("3 - Eliminar un elemento. ");
-                Console.WriteLine("4 - Listar todos los elementos ordenados. ");
+                Console.WriteLine("1 - Dar de alta un artista. ");
+                Console.WriteLine("2 - Buscar un artista. ");
+                Console.WriteLine("3 - Eliminar artistas. ");
+                Console.WriteLine("4 - Listar todos los artistas ordenados. ");
                 Console.WriteLine("0 - Salir del programa. ");
                 Console.Write("Ingrese una opción: ");
                 int opcion = Int32.Parse(Console.ReadLine());
@@ -40,7 +40,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                             BuscarElemento();
                             break;
                         case 3:
-                            BuscarElemento();
+                            EliminarElementos();
                             break;
                         case 4:
                             ListarArtistas();
@@ -56,16 +56,16 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
         {
             Console.WriteLine("1 - Solista");
             Console.WriteLine("2 - Banda");
-            Console.Write("Ingrese la opción que desea: ");
-            int opcion = Int32.Parse(Console.ReadLine());
+            Console.Write("Ingrese el nombre de la opción que desea: ");
+            string opcion = Console.ReadLine().ToLower();
             switch (opcion)
             {
-                case 1:
+                case "solista":
                     ArtistaSolista solista = IntroducirDatosSolista();
                     CtrlArtista.addArtistaSolista(solista);
                     
                     break;
-                case 2:
+                case "banda":
                     ArtistaBanda banda = introducirDatosBanda();
                     CtrlArtista.addArtistaBanda(banda);
                     break;
@@ -107,7 +107,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 contador++;
                 Console.WriteLine($"{contador} - {generoArtista}");
             }
-            Console.Write("Introduzca el genero (0-11)");
+            Console.Write("Introduzca el genero (1-12): ");
             int genero = Int32.Parse(Console.ReadLine()) - 1;
             //Hacer un cast del número introducido al valor del enum
             GeneroMusical generoMusical = (GeneroMusical)genero;
@@ -172,8 +172,11 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 opcion = Console.ReadLine().ToLower();
                 if (opcion.Equals("si"))
                 {
+                    //Como hay opciones que requieren de algun cambio a la hora de introducir los datos por consola porque 
+                    // sean opciones, los meto en un if y los controlo mejor
                     if (atributo.Equals("genero"))
                     {
+                        // Mostrar los generos disponibles del enum
                         Console.WriteLine("Generos disponibles: ");
                         foreach (GeneroMusical generoArtista in Enum.GetValues(typeof(GeneroMusical)))
                         {
@@ -231,7 +234,12 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
         }
         private static void BuscarElemento()
         {
-            CtrlArtista.searchArtista(PedirAtributosBusqueda());
+            CtrlArtista.buscarArtistaYEliminarUno(PedirAtributosBusqueda());
+            //CtrlArtista.searchArtista(PedirAtributosBusqueda());
+        }
+        private static void EliminarElementos()
+        {
+            CtrlArtista.deleteArtistas(PedirAtributosBusqueda());
         }
         private static void ListarArtistas()
         {

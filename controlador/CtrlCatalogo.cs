@@ -10,7 +10,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
         private const char MARCA_SOLITARIO = 'S';
         private const char MARCA_BANDA = 'B';
         private const int PESO_BYTES_BANDA = 161;
-        private const int PESO_BYTES_SOLITARIO = 98;
+        private const int PESO_BYTES_SOLITARIO = 108;
         
         private static string CompletarCadena(this string str, int size)
         {
@@ -138,7 +138,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
             if (File.Exists(NOMBRE_ARCHIVO))
             {
                 DateTime dateTime = DateTime.Now;
-                File.Move(NOMBRE_ARCHIVO, $"{NOMBRE_ARCHIVO}_{dateTime.Day}-{dateTime.Month}-{dateTime.Year}_{dateTime.Hour}-{dateTime.Minute}-{dateTime.Second}.dat");
+                File.Move(NOMBRE_ARCHIVO, $"{NOMBRE_ARCHIVO.Substring(0, 8)}_{dateTime.Day}-{dateTime.Month}-{dateTime.Year}__{dateTime.Hour}-{dateTime.Minute}-{dateTime.Second}.dat");
             }
             try
             {

@@ -56,7 +56,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
             mostrarLista(lstOrdenada);
         }
 
-        public static void mostrarLista(List<Artista> lista)
+        private static void mostrarLista(List<Artista> lista)
         {
             foreach (Artista artista in lista)
             {
@@ -66,7 +66,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
 
         public static void deleteArtistas(Dictionary<string, string> dicArtistas)
         {
-            String opcion = "";
+            String opcion;
             List<Artista> lstArtistasEncontrados = searchArtista(dicArtistas);
             mostrarLista(lstArtistasEncontrados);
 
@@ -97,6 +97,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                 }
             }
         }
+
 
         public static List<Artista> searchArtista(Dictionary<string, string> diccionario)
         {
@@ -161,49 +162,6 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                         {
                             cumpleRequisitos = false;
                             break;
-                        }
-                    }
-
-                    if (artista is ArtistaBanda)
-                    {
-                        ArtistaBanda aux = (ArtistaBanda)artista;
-                        if (atributo.Equals("LstMiembros"))
-                        {
-                            if (!aux.LstMiembros.ToLower().Contains(valorAtributo))
-                            {
-                                cumpleRequisitos = false;
-                                break;
-                            }
-                        }
-
-                        if (atributo.Equals("NumIntegrantes"))
-                        {
-                            if (!aux.NumIntegrantes.Equals(Int32.Parse(valorAtributo)))
-                            {
-                                cumpleRequisitos = false;
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        ArtistaSolista aux = (ArtistaSolista)artista;
-                        if (atributo.Equals("NombreReal"))
-                        {
-                            if (!aux.NombreReal.ToLower().Equals(valorAtributo))
-                            {
-                                cumpleRequisitos = false;
-                                break;
-                            }
-                        }
-
-                        if (atributo.Equals("InstrumentoPrincipal"))
-                        {
-                            if (!aux.InstrumentoPrincipal.ToLower().Equals(valorAtributo))
-                            {
-                                cumpleRequisitos = false;
-                                break;
-                            }
                         }
                     }
                 }

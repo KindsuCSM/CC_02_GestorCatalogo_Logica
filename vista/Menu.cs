@@ -155,7 +155,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
         }
 
         //Función para almacenar en un diccionario los valores por los que desea buscar en la lista
-        private static Dictionary<string, string> PedirAtributosBusqueda()
+        private static Dictionary<string, string> PedirAtributosBusquedaGenerales()
         {
             var dict = new Dictionary<string, string>();
 
@@ -168,13 +168,11 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             de los atributos que voy a introducir en el propio diccionario que luego pasaré a la función de la clase CtrlArtista*/
             string[] atributosArtistaMostrar =
             {
-                "nombre del artista", "año de inicio", "discografia", "numero de discos", "genero", "activo",
-                "nombre real", "instrumento"
+                "nombre del artista", "año de inicio", "discografia", "numero de discos", "genero", "activo"
             };
             string[] atributosArtistaNombres =
             {
-                "NombreGrupo", "AnioInicios", "Discografia", "NumDiscos", "Genero", "EstaActivo", "NombreReal",
-                "InstrumentoPrincipal"
+                "NombreGrupo", "AnioInicios", "Discografia", "NumDiscos", "Genero", "EstaActivo"
             };
 
             //Preguntarle por los atributos del padre primero, 
@@ -215,31 +213,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                         dict.Add(atributosArtistaNombres[contadorAtributos], valor);
                     }
                 }
-
                 contadorAtributos++;
-            }
-
-            /*En caso de que el diccionario no tenga ninguno de los atributos del artista solitario, entrará a preguntar
-            si quiere buscar por los atributos del artista banda*/
-            if (!dict.ContainsKey("NombreReal") && !dict.ContainsKey("InstrumentoPrincipal"))
-            {
-                Console.Write($"¿Desea buscar por un miembro del grupo?(Si-No): ");
-                opcion = Console.ReadLine().ToLower();
-                if (opcion.Equals("si"))
-                {
-                    Console.Write("Introduzca el nombre del miembro: ");
-                    valor = Console.ReadLine().ToLower();
-                    dict.Add("LstMiembros", valor);
-                }
-
-                Console.Write("Desea buscar por el numero de miembros?(Si-No):");
-                opcion = Console.ReadLine().ToLower();
-                if (opcion.Equals("si"))
-                {
-                    Console.Write("Introduzca el numero de miembros: ");
-                    valor = Console.ReadLine().ToLower();
-                    dict.Add("NumMiembros", valor);
-                }
             }
 
             foreach (KeyValuePair<string, string> item in dict)
@@ -249,20 +223,20 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
 
             return dict;
         }
-
+        
         /*Función que a partir del diccionario extraído de PedirAtributosBusqueda lo
             pasaremos a una función de CtrlArtista que buscará a los artistas y en caso
             de que sea uno, dar la opción de borrarlo*/
         private static void BuscarElemento()
         {
-            CtrlArtista.buscarArtistaYEliminarUno(PedirAtributosBusqueda());
+            CtrlArtista.buscarArtistaYEliminarUno(PedirAtributosBusquedaGenerales());
         }
 
         /*Función que a partir del diccionario extraído de PedirAtributosBusqueda lo
         pasaremos a una función de CtrlArtista que buscará a los artistas y le dará la opción de borrarlos*/
         private static void EliminarElementos()
         {
-            CtrlArtista.deleteArtistas(PedirAtributosBusqueda());
+            CtrlArtista.deleteArtistas(PedirAtributosBusquedaGenerales());
         }
 
         /*Función que recogerá la opcion que desea el usuario por la que ordenaremos la lista*/

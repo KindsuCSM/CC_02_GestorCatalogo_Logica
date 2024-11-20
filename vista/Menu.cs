@@ -10,6 +10,8 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             new CtrlArtista(); //inicializar la lista
             MenuPrincipal();
         }
+
+        /*Función que mostrará al usuario las opciones que puede hacer*/
         private static void MenuPrincipal()
         {
             bool continuar = true;
@@ -45,13 +47,16 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                         case 4:
                             ListarArtistas();
                             break;
-                        default: 
-                            Console.WriteLine("El numero que ha introducido no es válido.");
+                        default:
+                            Console.WriteLine("El número que ha introducido no es válido.");
                             break;
                     }
                 }
             } while (continuar);
         }
+
+        /*Función para pedir al usuario que tipo de artista quiere introducir y dependiendo de su respuesta
+            llamamos a una función del CtrlArtista que introducirá el objeto en la lista */
         private static void DarAlta()
         {
             Console.WriteLine("1 - Solista");
@@ -63,7 +68,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 case "solista":
                     ArtistaSolista solista = IntroducirDatosSolista();
                     CtrlArtista.addArtistaSolista(solista);
-                    
+
                     break;
                 case "banda":
                     ArtistaBanda banda = introducirDatosBanda();
@@ -74,97 +79,104 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                     break;
             }
         }
-        private static ArtistaSolista IntroducirDatosSolista()
+
+        private static Artista introducirDatosArtista()
         {
             int contador = 0;
             bool estaActivo;
-            
-            //Pedir los datos necesarios para crear una nueva instancia de ArtistaBanda
+            Console.Write("Nombre artistíco: ");
+            String nombreArtistico = Console.ReadLine();
+            Console.Write("Año de inicios: ");
+            int anioInicio = Int32.Parse(Console.ReadLine());
+            Console.Write("Discografía: ");
+            String discografica = Console.ReadLine();
+            Console.Write("Número de discos: ");
+            int numDiscos = Int32.Parse(Console.ReadLine());
+            Console.Write("¿Se encuentra activo?(Si-No): ");
+            string active = Console.ReadLine();
+
+            //Convertir el string si o no a booleano
+            if (active.ToLower().Equals("si"))
+            {
+                estaActivo = true;
+            }
+            else if (active.ToLower().Equals("no"))
+            {
+                estaActivo = false;
+            }
+            else
+            {
+                Console.WriteLine("El valor introducido no es válido. ");
+                estaActivo = true;
+            }
+
+            Console.WriteLine("Género musical:");
+            // Mostrar los valores del enum GeneroMusical
+            foreach (GeneroMusical generoArtista in Enum.GetValues(typeof(GeneroMusical)))
+            {
+                contador++;
+                Console.WriteLine($"{contador} - {generoArtista}");
+            }
+
+            Console.Write("Introduzca el género (1-12): ");
+            int genero = Int32.Parse(Console.ReadLine()) - 1;
+            //Hacer un cast del número introducido al valor del enum
+            GeneroMusical generoMusical = (GeneroMusical)genero;
+
+            return new Artista(nombreArtistico, anioInicio, discografica, numDiscos, generoMusical, estaActivo);
+        }
+
+        //Introducir datos del artista solista
+        private static ArtistaSolista IntroducirDatosSolista()
+        {
             Console.Write("Nombre real: ");
             String nombre = Console.ReadLine();
             Console.Write("Instrumento: ");
             String instrumento = Console.ReadLine();
-            Console.Write("Nombre artistico: ");
-            String nombreArtistico = Console.ReadLine();
-            Console.Write("Año de incicios: ");
-            int anioInicio = Int32.Parse(Console.ReadLine());
-            Console.Write("Discografía: ");
-            String disgrafico = Console.ReadLine();
-            Console.Write("Numero de discos: ");
-            int numDiscos = Int32.Parse(Console.ReadLine());
-            Console.Write("¿Se encuentra activo?(Si-No): ");
-            string active = Console.ReadLine();
-            
-            //Convertir el string si o no a booleano
-            if (active.ToLower().Equals("si")) { estaActivo = true; }
-            else if (active.ToLower().Equals("no")) { estaActivo = false; }
-            else { Console.WriteLine("El valor introducido no es válido. "); estaActivo = true; }
-            
-            Console.WriteLine("Genero musical:");
-            // Mostrar los valores del enum GeneroMusical
-            foreach (GeneroMusical generoArtista in Enum.GetValues(typeof(GeneroMusical)))
-            {
-                contador++;
-                Console.WriteLine($"{contador} - {generoArtista}");
-            }
-            Console.Write("Introduzca el genero (1-12): ");
-            int genero = Int32.Parse(Console.ReadLine()) - 1;
-            //Hacer un cast del número introducido al valor del enum
-            GeneroMusical generoMusical = (GeneroMusical)genero;
+            //Obtenemos los datos del padre desde introducirDatosArtista
+            Artista art = introducirDatosArtista();
             //Retornar un nuevo ArtistaSolista
-            return new ArtistaSolista(nombre, instrumento, nombreArtistico, anioInicio, disgrafico, numDiscos, generoMusical ,estaActivo);
+            return new ArtistaSolista(nombre, instrumento, art.NombreGrupo, art.AnioInicios, art.Discografia,
+                art.NumDiscos, art.Genero, art.EstaActivo);
         }
+
+        //Introducir datos del artista banda
         private static ArtistaBanda introducirDatosBanda()
         {
-            int contador = 0;
-            bool estaActivo;
-            //Pedir los datos necesarios para crear una nueva instancia de ArtistaBanda
             Console.Write("Introduzca los nombres de los integrantes: ");
             String lstmiembros = Console.ReadLine();
-            Console.Write("Numero de integrantes: ");
+            Console.Write("Número de integrantes: ");
             int numIntegrantes = Int32.Parse(Console.ReadLine());
-            Console.Write("Nombre artistico: ");
-            String nombreArtistico = Console.ReadLine();
-            Console.Write("Año de incicios: ");
-            int anioInicio = Int32.Parse(Console.ReadLine());
-            Console.Write("Discografía: ");
-            String disgrafico = Console.ReadLine();
-            Console.Write("Numero de discos: ");
-            int numDiscos = Int32.Parse(Console.ReadLine());
-            Console.Write("¿Se encuentra activo?(Si-No): ");
-            string active = Console.ReadLine();
-            //Convertir el string si o no a booleano
-            if (active.ToLower().Equals("Si")) { estaActivo = true; }
-            else if (active.ToLower().Equals("No")) { estaActivo = false; }
-            else { Console.WriteLine("El valor introducido no es válido. "); estaActivo = true; }
-            Console.WriteLine("Genero musical:");
-            // Mostrar los valores del enum GeneroMusical
-            foreach (GeneroMusical generoArtista in Enum.GetValues(typeof(GeneroMusical)))
-            {
-                contador++;
-                Console.WriteLine($"{contador} - {generoArtista}");
-            }
-            Console.Write("Introduzca el genero (0-11): ");
-            int genero = Int32.Parse(Console.ReadLine()) - 1;
-            //Hacer un cast del número introducido al valor del enum
-            GeneroMusical generoMusical = (GeneroMusical) genero;
-            //Retornar un nuevo ArtistaBanda
-            return new ArtistaBanda(lstmiembros, numIntegrantes, nombreArtistico, anioInicio, disgrafico, numDiscos, generoMusical ,estaActivo);
+            //Obtenemos los datos del padre desde introducirDatosArtista
+            Artista art = introducirDatosArtista();
+
+            return new ArtistaBanda(lstmiembros, numIntegrantes, art.NombreGrupo, art.AnioInicios, art.Discografia,
+                art.NumDiscos, art.Genero, art.EstaActivo);
         }
-        private static Dictionary<string, string> PedirAtributosBusqueda() 
+
+        //Función para almacenar en un diccionario los valores por los que desea buscar en la lista
+        private static Dictionary<string, string> PedirAtributosBusqueda()
         {
             var dict = new Dictionary<string, string>();
-            
+
             string opcion;
             string valor;
             int contadorGeneros = 0;
             int contadorAtributos = 0;
             /*Para no crear tantas estructuras de condicionales, me creo un bucle que recorra una lista con los nombres de atributos
-            //listos para ser mostrados en la pantalla y creo otra con el mismo orden que la anterior, con los nombres
-            //de los atributos que voy a introducir en el propio diccionario que luego pasaré a la función de la clase CtrlArtista*/
-            string[] atributosArtistaMostrar = { "nombre del artista", "año de inicio", "discografia", "genero", "activo", "nombre real", "instrumento" };
-            string[] atributosArtistaNombres = { "NombreGrupo", "AnioInicios", "Discografia", "Genero", "EstaActivo", "NombreReal", "InstrumentoPrincipal" };
-            
+            listos para ser mostrados en la pantalla y creo otra con el mismo orden que la anterior, con los nombres
+            de los atributos que voy a introducir en el propio diccionario que luego pasaré a la función de la clase CtrlArtista*/
+            string[] atributosArtistaMostrar =
+            {
+                "nombre del artista", "año de inicio", "discografia", "numero de discos", "genero", "activo",
+                "nombre real", "instrumento"
+            };
+            string[] atributosArtistaNombres =
+            {
+                "NombreGrupo", "AnioInicios", "Discografia", "NumDiscos", "Genero", "EstaActivo", "NombreReal",
+                "InstrumentoPrincipal"
+            };
+
             //Preguntarle por los atributos del padre primero, 
             foreach (string atributo in atributosArtistaMostrar)
             {
@@ -183,6 +195,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                             contadorGeneros++;
                             Console.WriteLine($"{contadorGeneros} - {generoArtista}");
                         }
+
                         Console.Write($"Introduzca el {atributo}: ");
                         valor = Console.ReadLine().ToLower();
                         dict.Add(atributosArtistaNombres[contadorAtributos], valor);
@@ -202,9 +215,11 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                         dict.Add(atributosArtistaNombres[contadorAtributos], valor);
                     }
                 }
+
                 contadorAtributos++;
             }
-            /*En caso de que el diccionario no tenga ninguno de los atributos del artista solitario, entrará a preguntar 
+
+            /*En caso de que el diccionario no tenga ninguno de los atributos del artista solitario, entrará a preguntar
             si quiere buscar por los atributos del artista banda*/
             if (!dict.ContainsKey("NombreReal") && !dict.ContainsKey("InstrumentoPrincipal"))
             {
@@ -213,15 +228,16 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                 if (opcion.Equals("si"))
                 {
                     Console.Write("Introduzca el nombre del miembro: ");
-                    valor = Console.ReadLine();
+                    valor = Console.ReadLine().ToLower();
                     dict.Add("LstMiembros", valor);
                 }
+
                 Console.Write("Desea buscar por el numero de miembros?(Si-No):");
                 opcion = Console.ReadLine().ToLower();
                 if (opcion.Equals("si"))
                 {
                     Console.Write("Introduzca el numero de miembros: ");
-                    valor = Console.ReadLine();
+                    valor = Console.ReadLine().ToLower();
                     dict.Add("NumMiembros", valor);
                 }
             }
@@ -230,20 +246,30 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
             {
                 Console.WriteLine($"{item.Key} - {item.Value}");
             }
+
             return dict;
         }
+
+        /*Función que a partir del diccionario extraído de PedirAtributosBusqueda lo
+            pasaremos a una función de CtrlArtista que buscará a los artistas y en caso
+            de que sea uno, dar la opción de borrarlo*/
         private static void BuscarElemento()
         {
             CtrlArtista.buscarArtistaYEliminarUno(PedirAtributosBusqueda());
-            //CtrlArtista.searchArtista(PedirAtributosBusqueda());
         }
+
+        /*Función que a partir del diccionario extraído de PedirAtributosBusqueda lo
+        pasaremos a una función de CtrlArtista que buscará a los artistas y le dará la opción de borrarlos*/
         private static void EliminarElementos()
         {
             CtrlArtista.deleteArtistas(PedirAtributosBusqueda());
         }
+
+        /*Función que recogerá la opcion que desea el usuario por la que ordenaremos la lista*/
         private static void ListarArtistas()
         {
-            String[] elementos = { "nombre grupo", "año inicio", "discografia", "numero de discos", "genero", "activo" };
+            String[] elementos =
+                { "nombre grupo", "año inicio", "discografia", "numero de discos", "genero", "activo" };
             int contador = 1;
             string opc;
             bool continuar = true;
@@ -255,6 +281,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
                     Console.WriteLine($"{contador} - {elemento}");
                     contador++;
                 }
+
                 Console.WriteLine("¿Por que atributo desea ordenar la lista? Introduzca el nombre: ");
                 opc = Console.ReadLine().ToLower();
                 if (elementos.Contains(opc))
@@ -271,4 +298,3 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
         }
     }
 }
-

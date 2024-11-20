@@ -5,13 +5,12 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
     internal static class CtrlCatalogo
     {
         //Crear constantes
-        //El formato que tiene nombre de archivo es para que se nos cree en la carpeta del propio archivo y no en net8.0
-        private const string NOMBRE_ARCHIVO = "catalogo.dat"; 
+        private const string NOMBRE_ARCHIVO = "catalogo.dat";
         private const char MARCA_SOLITARIO = 'S';
         private const char MARCA_BANDA = 'B';
         private const int PESO_BYTES_BANDA = 161;
         private const int PESO_BYTES_SOLITARIO = 108;
-        
+
         private static string CompletarCadena(this string str, int size)
         {
             return str.PadRight(size, ' '); //PadRight rellena los huecos a su derecha
@@ -24,6 +23,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
             {
                 continuar = br.BaseStream.Length - br.BaseStream.Position >= numBytes;
             }
+
             return continuar;
         }
 
@@ -54,8 +54,6 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                 buffOut.Write(artista.NombreReal.CompletarCadena(ArtistaSolista.MAX_STRING_BG));
                 buffOut.Write(artista.InstrumentoPrincipal.CompletarCadena(ArtistaSolista.MAX_STRING_SM));
                 EscribirArtista(artista, buffOut);
-
-
             }
         }
 
@@ -70,7 +68,8 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
             GeneroMusical genero = (GeneroMusical)(buffIn.ReadInt32());
             bool estaActivo = buffIn.ReadBoolean();
 
-            return new ArtistaBanda(lstMiembros, numIntegrantes, nombreGrupo, anioInicios, discografia, numDiscos, genero, estaActivo);
+            return new ArtistaBanda(lstMiembros, numIntegrantes, nombreGrupo, anioInicios, discografia, numDiscos,
+                genero, estaActivo);
         }
 
         private static ArtistaSolista LeerArtistaSolista(BinaryReader buffIn)
@@ -84,7 +83,8 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
             GeneroMusical genero = (GeneroMusical)(buffIn.ReadInt32());
             bool estaActivo = buffIn.ReadBoolean();
 
-            return new ArtistaSolista(nombreReal, instrumentoPrincipal, nombreGrupo, anioInicios, discografia, numDiscos, genero, estaActivo);
+            return new ArtistaSolista(nombreReal, instrumentoPrincipal, nombreGrupo, anioInicios, discografia,
+                numDiscos, genero, estaActivo);
         }
 
         public static List<Artista> leerArchivo()
@@ -110,12 +110,14 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                                         {
                                             list.Add(LeerArtistaBanda(buffIn));
                                         }
+
                                         break;
                                     case MARCA_SOLITARIO:
                                         if (buffIn.ContinuarLeyendo(PESO_BYTES_SOLITARIO - sizeof(char)))
                                         {
                                             list.Add(LeerArtistaSolista(buffIn));
                                         }
+
                                         break;
                                     default:
                                         break;
@@ -129,6 +131,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                     Console.WriteLine($"Error al leer del archivo. ERROR: {ex.ToString()}");
                 }
             }
+
             return list;
         }
 
@@ -138,8 +141,10 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
             if (File.Exists(NOMBRE_ARCHIVO))
             {
                 DateTime dateTime = DateTime.Now;
-                File.Move(NOMBRE_ARCHIVO, $"{NOMBRE_ARCHIVO.Substring(0, 8)}_{dateTime.Day}-{dateTime.Month}-{dateTime.Year}__{dateTime.Hour}-{dateTime.Minute}-{dateTime.Second}.dat");
+                File.Move(NOMBRE_ARCHIVO,
+                    $"{NOMBRE_ARCHIVO.Substring(0, 8)}_{dateTime.Day}-{dateTime.Month}-{dateTime.Year}__{dateTime.Hour}-{dateTime.Minute}-{dateTime.Second}.dat");
             }
+
             try
             {
                 using (var fileStr = new FileStream(NOMBRE_ARCHIVO, FileMode.Create))
@@ -153,9 +158,11 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                         }
                     }
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine($"Error al escribir el archivo, se han introducido {contador}. ERROR: {ex.ToString()}");
+                Console.WriteLine(
+                    $"Error al escribir el archivo, se han introducido {contador}. ERROR: {ex.ToString()}");
             }
         }
     }

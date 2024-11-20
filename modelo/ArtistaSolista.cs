@@ -9,17 +9,20 @@
         private string nombreReal;
         private string instrumentoPrincipal;
 
-        public ArtistaSolista(string nombreReal, string instrumentoPrincipal, string nombre, 
-            int anioInicios, string discografia, int numDiscos, GeneroMusical genero, bool estaActivo):
+        public ArtistaSolista(string nombreReal, string instrumentoPrincipal, string nombre,
+            int anioInicios, string discografia, int numDiscos, GeneroMusical genero, bool estaActivo) :
             base(nombre, anioInicios, discografia, numDiscos, genero, estaActivo)
         {
             NombreReal = nombreReal;
             InstrumentoPrincipal = instrumentoPrincipal;
         }
-        public string NombreReal { 
+
+        public string NombreReal
+        {
             get { return nombreReal; }
-            set { nombreReal = (value.Length <=MAX_STRING_BG) ? value : value.Substring(0, MAX_STRING_BG); }
+            set { nombreReal = (value.Length <= MAX_STRING_BG) ? value : value.Substring(0, MAX_STRING_BG); }
         }
+
         public string InstrumentoPrincipal
         {
             get { return instrumentoPrincipal; }
@@ -28,7 +31,8 @@
 
         public override string ToString()
         {
-            return $"Artista Solista:\n\tNombre real: {NombreReal}\n\tInstrumento principal: {InstrumentoPrincipal}" +  base.ToString();
+            return $"Artista Solista:\n\tNombre real: {NombreReal}\n\tInstrumento principal: {InstrumentoPrincipal}" +
+                   base.ToString();
         }
     }
 }

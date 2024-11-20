@@ -12,6 +12,6 @@ public enum GeneroMusical
     Jazz = 7,
     Clásica = 8,
     Rap = 9,
-    Metal = 10, 
+    Metal = 10,
     Urbano = 11
 }

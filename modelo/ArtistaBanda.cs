@@ -12,8 +12,8 @@ namespace _02_CristinaSanchez_GestorCatalogo.modelo
 
         private string lstMiembros;
         private int numIntegrantes;
-        
-        public ArtistaBanda(string lstMiembros, int numIntegrantes, string nombre, 
+
+        public ArtistaBanda(string lstMiembros, int numIntegrantes, string nombre,
             int anioInicios, string discografia, int numDiscos, GeneroMusical genero, bool estaActivo) :
             base(nombre, anioInicios, discografia, numDiscos, genero, estaActivo)
         {
@@ -26,6 +26,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.modelo
             get { return lstMiembros; }
             set { lstMiembros = (value.Length <= MAX_STRING) ? value : value.Substring(0, MAX_STRING); }
         }
+
         public int NumIntegrantes { get; set; }
 
         public override string ToString()
@@ -37,7 +38,9 @@ namespace _02_CristinaSanchez_GestorCatalogo.modelo
             {
                 cadenaCompleta += $"\n\t\t - {miembro}";
             }
-            return $"Banda: \n\tIntegrantes de la banda: {cadenaCompleta}\n\tNumero de integrantes: {NumIntegrantes}" + base.ToString();
+
+            return $"Banda: \n\tIntegrantes de la banda: {cadenaCompleta}\n\tNumero de integrantes: {NumIntegrantes}" +
+                   base.ToString();
         }
     }
 }

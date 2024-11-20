@@ -1,11 +1,13 @@
 ﻿using _02_CristinaSanchez_GestorCatalogo.modelo;
 using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 
 namespace _02_CristinaSanchez_GestorCatalogo.controlador
 {
     internal class CtrlArtista
     {
         private static List<Artista> artistas;
+
         public CtrlArtista()
         {
             artistas = CtrlCatalogo.leerArchivo();
@@ -15,14 +17,17 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
         {
             return artistas;
         }
+
         public static void addArtistaSolista(ArtistaSolista artista)
         {
             artistas.Add(artista);
         }
+
         public static void addArtistaBanda(ArtistaBanda artista)
         {
             artistas.Add(artista);
         }
+
         public static void orderLista(string atributo)
         {
             List<Artista> lstOrdenada = new List<Artista>();
@@ -47,8 +52,10 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                     lstOrdenada = artistas.OrderBy(n => n.EstaActivo).ToList();
                     break;
             }
+
             mostrarLista(lstOrdenada);
         }
+
         public static void mostrarLista(List<Artista> lista)
         {
             foreach (Artista artista in lista)
@@ -56,6 +63,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                 Console.WriteLine(artista);
             }
         }
+
         public static void deleteArtistas(Dictionary<string, string> dicArtistas)
         {
             String opcion = "";
@@ -71,7 +79,8 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                     artistas.Remove(lstArtistasEncontrados[i]);
                 }
             }
-        } 
+        }
+
         public static void buscarArtistaYEliminarUno(Dictionary<string, string> dicArtistas)
         {
             List<Artista> lstArtistasEncontrados = searchArtista(dicArtistas);
@@ -87,13 +96,13 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                     artistas.Remove(lstArtistasEncontrados[0]);
                 }
             }
-            
         }
+
         public static List<Artista> searchArtista(Dictionary<string, string> diccionario)
         {
             List<Artista> artistasFiltrados = new List<Artista>();
             bool cumpleRequisitos;
-            
+
             foreach (Artista artista in artistas)
             {
                 cumpleRequisitos = true;
@@ -101,34 +110,111 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                 {
                     string atributo = valor.Key;
                     string valorAtributo = valor.Value;
-                    
-                    //Cogemos de entre todos los atributos que tiene el artista
-                    PropertyInfo pi = artista.GetType().GetProperty(atributo);
-                    object valorPropiedad = pi.GetValue(artista);
-
-                    // Comparar valorPropiedad y valorAtributo como strings
-                    if (valorPropiedad == null || valorPropiedad.ToString().ToLower() != valorAtributo)
+                    if (atributo.Equals("NombreGrupo"))
                     {
-                        cumpleRequisitos = false;
-                        break;
+                        if (!artista.NombreGrupo.ToLower().Equals(valorAtributo))
+                        {
+                            cumpleRequisitos = false;
+                            break;
+                        }
+                    }
+
+                    if (atributo.Equals("AnioInicios"))
+                    {
+                        if (!artista.AnioInicios.Equals(Int32.Parse(valorAtributo)))
+                        {
+                            cumpleRequisitos = false;
+                            break;
+                        }
+                    }
+
+                    if (atributo.Equals("Discografia"))
+                    {
+                        if (!artista.Discografia.ToLower().Equals(valorAtributo))
+                        {
+                            cumpleRequisitos = false;
+                            break;
+                        }
+                    }
+
+                    if (atributo.Equals("NumDiscos"))
+                    {
+                        if (!artista.NumDiscos.Equals(Int32.Parse(valorAtributo)))
+                        {
+                            cumpleRequisitos = false;
+                            break;
+                        }
+                    }
+
+                    if (atributo.Equals("Genero"))
+                    {
+                        if (!artista.Genero.ToString().Equals(valorAtributo))
+                        {
+                            cumpleRequisitos = false;
+                            break;
+                        }
+                    }
+
+                    if (atributo.Equals("EstaActivo"))
+                    {
+                        if (!artista.EstaActivo.ToString().Equals(valorAtributo))
+                        {
+                            cumpleRequisitos = false;
+                            break;
+                        }
+                    }
+
+                    if (artista is ArtistaBanda)
+                    {
+                        ArtistaBanda aux = (ArtistaBanda)artista;
+                        if (atributo.Equals("LstMiembros"))
+                        {
+                            if (!aux.LstMiembros.ToLower().Contains(valorAtributo))
+                            {
+                                cumpleRequisitos = false;
+                                break;
+                            }
+                        }
+
+                        if (atributo.Equals("NumIntegrantes"))
+                        {
+                            if (!aux.NumIntegrantes.Equals(Int32.Parse(valorAtributo)))
+                            {
+                                cumpleRequisitos = false;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ArtistaSolista aux = (ArtistaSolista)artista;
+                        if (atributo.Equals("NombreReal"))
+                        {
+                            if (!aux.NombreReal.ToLower().Equals(valorAtributo))
+                            {
+                                cumpleRequisitos = false;
+                                break;
+                            }
+                        }
+
+                        if (atributo.Equals("InstrumentoPrincipal"))
+                        {
+                            if (!aux.InstrumentoPrincipal.ToLower().Equals(valorAtributo))
+                            {
+                                cumpleRequisitos = false;
+                                break;
+                            }
+                        }
                     }
                 }
+
                 if (cumpleRequisitos)
                 {
                     artistasFiltrados.Add(artista);
                 }
             }
+
             return artistasFiltrados;
-        }
-        public static void removeArtista(Artista artista)
-        {
-            Console.Write($"¿Desea borrar el artista {artista.NombreGrupo}?(si - no): ");
-            string opc = Console.ReadLine().ToLower();
-            if (opc.Equals("si"))
-            {
-                artistas.Remove(artista);
-                Console.WriteLine("El artista se ha eliminado con éxito.");
-            }
         }
     }
 }

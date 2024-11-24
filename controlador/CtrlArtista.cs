@@ -46,7 +46,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.controlador
                     lstOrdenada = artistas.OrderBy(n => n.NumDiscos).ToList();
                     break;
                 case "genero":
-                    lstOrdenada = artistas.OrderBy(n => n.Genero).ToList();
+                    lstOrdenada = artistas.OrderBy(n => n.Genero.ToString()).ToList();
                     break;
                 case "activo":
                     lstOrdenada = artistas.OrderBy(n => n.EstaActivo).ToList();

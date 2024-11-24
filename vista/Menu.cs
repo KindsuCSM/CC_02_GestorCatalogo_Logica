@@ -7,7 +7,7 @@ namespace _02_CristinaSanchez_GestorCatalogo.vista
     {
         public Menu()
         {
-            new CtrlArtista(); //inicializar la lista
+            new CtrlArtista(); //inicializar la lista``
             MenuPrincipal();
         }
 
